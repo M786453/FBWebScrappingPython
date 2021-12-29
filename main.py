@@ -4,8 +4,6 @@ import time
 import wget as wget
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 URL = "https://m.facebook.com/KPESED001/photos/pcb.1313884819044193/1313880139044661/?type=3&source=48"
@@ -20,17 +18,15 @@ PATH = os.path.join(PATH, "images")
 
 FILENAME = "image"
 
-counter = 1
-
 driver = webdriver.Chrome(DRIVER_PATH)
 
 driver.get(URL)
 
-for x in range(1, 65):
+for x in range(1, 71):
     try:
         time.sleep(5)
 
-        DOWNLOAD_PATH = os.path.join(PATH, FILENAME + str(counter) + ".jpg")
+        DOWNLOAD_PATH = os.path.join(PATH, FILENAME + str(x) + ".jpg")
 
         photo_link = driver.find_element(By.CLASS_NAME, "_57-q")
 
@@ -51,4 +47,3 @@ for x in range(1, 65):
     except NoSuchElementException:
         print("Element not found")
 
-    counter += 1
